@@ -6,11 +6,10 @@ import com.example.newsapp.data.repository.dataSource.NewsRemoteDataSource
 import retrofit2.Response
 
 class NewsRemoteDataSourceImpl(
-    private val newsAPIService: NewsAPIService,
-    private val country: String,
-    private val page: Int
-) : NewsRemoteDataSource {
-    override suspend fun getTopHeadline(): Response<APIResponse> {
+    private val newsAPIService: NewsAPIService
+):NewsRemoteDataSource {
+
+    override suspend fun getTopHeadline(country: String, page: Int): Response<APIResponse> {
         return newsAPIService.getTopHeadline(country, page)
     }
 }
