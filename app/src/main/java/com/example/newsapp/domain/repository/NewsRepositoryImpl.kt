@@ -42,10 +42,10 @@ class NewsRepositoryImpl(
     }
 
     override suspend fun deleteNews(article: Article) {
-        TODO("Not yet implemented")
+        newsLocalDatasource.deleteArticleFromDB(article)
     }
 
     override suspend fun getSavedNews(): Flow<List<Article>> {
-        TODO("Not yet implemented")
+        return newsLocalDatasource.getSavedArticles()
     }
 }

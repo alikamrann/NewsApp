@@ -1,6 +1,7 @@
 package com.example.newsapp.presentaion.di
 
 import com.example.newsapp.domain.repository.NewsRepository
+import com.example.newsapp.domain.usecase.DeleteSavedNewsUseCase
 import com.example.newsapp.domain.usecase.GetNewsHeadlineUseCase
 import com.example.newsapp.domain.usecase.GetSavedNewsUseCase
 import com.example.newsapp.domain.usecase.GetSearchedNewsUseCase
@@ -38,5 +39,21 @@ class UseCaseModule {
         newsRepository: NewsRepository
     ): SaveNewsUseCase {
         return SaveNewsUseCase(newsRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetSaveNewsUseCase(
+        newsRepository: NewsRepository
+    ): GetSavedNewsUseCase {
+        return GetSavedNewsUseCase(newsRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDeleteSaveNewsUseCase(
+         newsRepository: NewsRepository
+    ): DeleteSavedNewsUseCase {
+        return DeleteSavedNewsUseCase(newsRepository)
     }
 }

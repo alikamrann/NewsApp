@@ -174,7 +174,7 @@ class NewsFragment : Fragment() {
 
     }
     fun viewSearchedNews(){
-        viewModel.searchedNews.observe(viewLifecycleOwner) { response ->
+        viewModel.searchedNews.observe(this) { response ->
             when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
