@@ -1,13 +1,15 @@
 package com.example.newsapp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
+import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,7 +49,7 @@ class NewsFragment : Fragment() {
         newsAdapter = (activity as MainActivity).newsAdapter
         newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
-                putSerializable("selected_article",it)
+                putSerializable("selected_article", it)
             }
             findNavController().navigate(
                 R.id.action_newsFragment_to_infoFragment,
@@ -81,8 +83,8 @@ class NewsFragment : Fragment() {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let {
-                        Toast.makeText(activity, "An error occurred : $it", Toast.LENGTH_LONG)
-                            .show()
+//                        Toast.makeText(activity, "An error occurred : $it", Toast.LENGTH_LONG)
+//                            .show()
                     }
                 }
 
@@ -143,10 +145,14 @@ class NewsFragment : Fragment() {
         }
     }
 
-    private fun setSearchView(){
-        fragmentNewsBinding.svNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+    private fun setSearchView() {
+
+
+
+
+        fragmentNewsBinding.svNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                viewModel.searchNews(p0.toString(),page)
+                viewModel.searchNews(p0.toString(), page)
                 viewSearchedNews()
                 return false
             }
@@ -154,7 +160,7 @@ class NewsFragment : Fragment() {
             override fun onQueryTextChange(p0: String?): Boolean {
                 MainScope().launch {
                     delay(2000)
-                    viewModel.searchNews(p0.toString(),page)
+                    viewModel.searchNews(p0.toString(), page)
                     viewSearchedNews()
 
                 }
@@ -162,7 +168,7 @@ class NewsFragment : Fragment() {
             }
 
         })
-        fragmentNewsBinding.svNews.setOnCloseListener(object :SearchView.OnCloseListener{
+        fragmentNewsBinding.svNews.setOnCloseListener(object : SearchView.OnCloseListener {
             override fun onClose(): Boolean {
                 initRecyclerView()
                 viewNewsList()
@@ -173,7 +179,8 @@ class NewsFragment : Fragment() {
 
 
     }
-    fun viewSearchedNews(){
+
+    fun viewSearchedNews() {
         viewModel.searchedNews.observe(this) { response ->
             when (response) {
                 is Resource.Success -> {
@@ -192,8 +199,8 @@ class NewsFragment : Fragment() {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let {
-                        Toast.makeText(activity, "An error occurred : $it", Toast.LENGTH_LONG)
-                            .show()
+//                        Toast.makeText(activity, "An error occurred : $it", Toast.LENGTH_LONG)
+//                            .show()
                     }
                 }
 

@@ -9,6 +9,7 @@
     tools:context=".NewsFragment">
 
     <SearchView
+        android:searchIcon="@drawable/baseline_search_24"
         android:id="@+id/svNews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
