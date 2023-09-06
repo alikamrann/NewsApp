@@ -54,9 +54,11 @@ To get started with the project, follow these steps:
 
 2. Open the project in Android Studio.
 
-3. Build and run the app on an emulator or a physical device.
+3. Getting an API Key: To obtain an API key for your project, you can visit a website like [https://newsapi.org/].
 
-4. Explore the codebase and start making your customizations.
+4. Build and run the app on an emulator or a physical device.
+
+5. Explore the codebase and start making your customizations.
 
 ## Contribution
 
